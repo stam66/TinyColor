@@ -115,8 +115,9 @@ end getAlpha
 
 function getBrightness pRGB
     // http://www.w3.org/TR/AERT#color-contrast
-    local tRGB
-    put _fixRGB(pRGB) into tRGB
+    local tColor, tRGB
+    put tinyColor(pRGB, empty)
+    put _fixRGB(toRGB(true)) into tRGB 
     split tRGB by comma
     return ((tRGB[1]* 299) + (tRGB[2]* 587) + (tRGB[3]* 114)) / 1000
 end getBrightness
@@ -1171,7 +1172,16 @@ function mostReadable baseColor, colorList, args
     return bestColor
 end mostReadable
 
-
+// SK functions
+// ---------
+// Dichotomous color (black or white) defined by brightness of given color (intended for text over color for max contrast)
+function hiContrastForColor pColor
+    if isDark(pColor) then
+        return "white"
+    else
+        return "black"
+    end if
+end hiContrastForColor
 
 
 // Utilities
