@@ -115,8 +115,8 @@ end getAlpha
 
 function getBrightness pColor
     // http://www.w3.org/TR/AERT#color-contrast
-    local tColor, tRGB
-    put tinyColor(pColor, empty)
+    local tRGB
+    get tinyColor(pColor, empty)
     put _fixRGB(toRGB(true)) into tRGB 
     split tRGB by comma
     return ((tRGB[1]* 299) + (tRGB[2]* 587) + (tRGB[3]* 114)) / 1000
